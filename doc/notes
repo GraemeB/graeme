@@ -1,0 +1,34 @@
+Resources
+http://rubygems.org/gems where gems are publically hosted
+https://www.ruby-toolbox.com/ categorises gems by popularityb.com
+http://github.com hosted git repository
+
+Import Files
+Gemfile manifest where the gems used by rails app are specified
+database.yml manifest where database connection settiings are specified
+application.rb global application settings are set here
+
+
+Setup environment (all in terminal):
+1. rvm install ruby
+2. gem install rails
+
+Create basic Rails application (all in terminal):
+
+1. rails new graeme
+2. cd graeme
+3. bundle
+4. bundle exec rails server
+5. visit http://localhost:3000 in browser you should see welcome screen
+
+Create blog application (all in terminal):
+
+1. rails new graeme
+2. cd graeme
+3. bundle
+4. bundle exec rails server
+5. http://localhost:3000
+
+
+Angus
+Explain erb how it works
