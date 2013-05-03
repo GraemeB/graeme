@@ -1,3 +1,5 @@
 class Post < ActiveRecord::Base
-  attr_accessible :description, :title
+	has_many :comments, dependent: :destroy
+  attr_accessible :description, :title, :comments_attributes
+  accepts_nested_attributes_for :comments
 end

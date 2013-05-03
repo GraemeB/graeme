@@ -9,6 +9,25 @@
   <b>Description:</b>
   <%= @post.description %>
 </p>
+<h3>Comments</h3>
+<hr>
+<% @post.comments.each do|comment| %>
+ <p><%= comment.description %><p>
+<% end %>
+
+<%= form_for @post do |f| %>
+  <%= f.fields_for :comments do|c| %>
+    <% if c.object.new_record? %>
+      <div class="field">
+        <%= c.label :description %><br />
+        <%= c.text_area :description %>
+      </div>
+    <% end %>
+  <% end %>
+  <div class="actions">
+    <%= f.submit %>
+  </div>  
+<% end %>
 
 
 <%= link_to 'Edit', edit_post_path(@post) %> |
