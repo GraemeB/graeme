@@ -21,13 +21,16 @@ Create basic Rails application (all in terminal):
 4. bundle exec rails server
 5. visit http://localhost:3000 in browser you should see welcome screen
 
-Create blog application (all in terminal):
+Add post model (all in terminal):
 
-1. rails new graeme
-2. cd graeme
-3. bundle
-4. bundle exec rails server
-5. http://localhost:3000
+
+Add comment model (all in terminal):
+
+
+Add user model (all in terminal):
+1. bundle exec rails generate model user provider uid name
+2. bundle exec rake db:migrate
+
 
 
 Angus

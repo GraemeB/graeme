@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+  before_filter :ensure_author, only: [:edit, :update, :destroy]
+
   # GET /posts
   # GET /posts.json
   # POST CONTROLLER YEAHHHHHHHH
@@ -42,7 +44,7 @@ class PostsController < ApplicationController
   # POST /posts
   # POST /posts.json
   def create
-    @post = Post.new(params[:post])
+    @post = current_user.posts.new(params[:post])
 
     respond_to do |format|
       if @post.save
@@ -75,11 +77,18 @@ class PostsController < ApplicationController
   # DELETE /posts/1.json
   def destroy
     @post = Post.find(params[:id])
+
     @post.destroy
 
     respond_to do |format|
       format.html { redirect_to posts_url }
       format.json { head :no_content }
     end
+  end
+
+  private
+  def ensure_author
+    @post = current_user.posts.where(params[:id])
+    return redirect_to(posts_url, notice: 'You are forbidden to delete other peoples post wanker!') if @post.empty?
   end
 end

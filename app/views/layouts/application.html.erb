@@ -16,25 +16,45 @@
     <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
-          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="brand" href="#">Project name</a>
+          <a class="brand" href="#">Rails Sample App</a>
           <div class="nav-collapse collapse">
             <ul class="nav">
-              <li class="active"><a href="#">Home</a></li>
-              <li><a href="#about">About</a></li>
-              <li><a href="#contact">Contact</a></li>
+              <li class="active"><a href="/">Home</a></li>
             </ul>
+
+            <ul class="nav pull-right">
+              <li class="dropdown">
+                <a href="#" data-toggle="dropdown">
+                  <% if current_user %>
+                    Signed in as <%= current_user.name %>
+                    <b class="caret"></b>
+                  <% else %>
+                    <%= link_to "Sign in with Twitter", "/auth/twitter"%>
+                  <% end %>
+                </a>
+                <% if current_user %>
+                  <ul class="dropdown-menu login">
+                    <li><%= link_to "Sign out", signout_path %></li>
+                  </ul>
+                <% end %>
+              </li>
+            </ul>
+
+
           </div><!--/.nav-collapse -->
         </div>
       </div>
     </div>
 
     <div class="container">
-     <%= yield %>
+      <% flash.each do |name, msg| %>
+        <div class="alert alert-<%= name == :notice ? "success" : "error" %>">
+          <a class="close" data-dismiss="alert">&#215;</a>
+          <%= content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String) %>
+        </div>
+      <% end %>
+
+      <%= yield %>
     </div> <!-- /container -->
 
 

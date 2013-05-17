@@ -6,6 +6,11 @@
 </p>
 
 <p>
+  <b>Author:</b>
+  <%= @post.user.name %>
+</p>
+
+<p>
   <b>Description:</b>
   <%= @post.description %>
 </p>
@@ -26,7 +31,7 @@
   <% end %>
   <div class="actions">
     <%= f.submit %>
-  </div>  
+  </div>
 <% end %>
 
 
